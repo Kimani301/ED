@@ -1174,4 +1174,42 @@ draw();
 if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
  try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}}
 </script>
+<style>
+#instGate{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:18px;background:linear-gradient(135deg,#4338ca,#7c3aed 50%,#db2777);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#fff;overflow:auto}
+#instGate .ib2{width:100%;max-width:420px;background:#ffffff1f;border:1px solid #ffffff55;border-radius:20px;padding:24px 20px;text-align:center;backdrop-filter:blur(6px)}
+#instGate .lg{width:68px;height:68px;margin:0 auto 12px;border:2px solid #fff;border-radius:18px;background:#ffffff26;display:grid;place-items:center;font:700 26px system-ui;letter-spacing:1px}
+#instGate h2{margin:0 0 6px;font-size:22px;letter-spacing:.04em}
+#instGate p{margin:0 0 16px;font-size:14px;opacity:.9}
+#instGate button{display:block;width:100%;margin:10px 0 0;padding:15px;border:0;border-radius:12px;font:700 16px system-ui;cursor:pointer}
+#instGate .a{background:#43b02a;color:#000}#instGate .w{background:#fff;color:#4338ca}#instGate .c{background:transparent;color:#fff;border:1px solid #ffffff88;font-weight:600;font-size:14px;padding:11px}
+#instHelp{display:none;margin-top:14px;text-align:left;background:#00000033;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.5}
+#instHelp b{display:block;margin-bottom:4px}
+</style>
+<div id="instGate" role="dialog" aria-modal="true" aria-labelledby="instT"><div class="ib2">
+<div class="lg">ED</div><h2 id="instT">Install ELIOT-DISTRIBUTORS</h2>
+<p>Which device are you installing on?</p>
+<button class="a" id="instAnd">&#129302; Android phone</button>
+<button class="w" id="instWin">&#128187; Windows computer</button>
+<div id="instHelp"></div>
+<button class="c" id="instSkip">Continue in browser without installing</button>
+</div></div>
+<script>
+(function(){
+var gate=document.getElementById("instGate");if(!gate)return;
+var standalone=matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: window-controls-overlay)").matches||navigator.standalone===true;
+var skipped=false;try{skipped=sessionStorage.getItem("ed_inst_skip")==="1"}catch(e){}
+if(standalone||skipped)return;
+var dp=null,help=document.getElementById("instHelp");
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e});
+window.addEventListener("appinstalled",function(){gate.style.display="none"});
+gate.style.display="flex";
+function show(h){help.innerHTML=h;help.style.display="block"}
+function go(manual){
+ if(dp){dp.prompt();dp.userChoice.then(function(){dp=null}).catch(function(){});return}
+ show(manual)}
+document.getElementById("instAnd").onclick=function(){go("<b>Install on Android</b>1. Open this link in <b>Chrome</b> (not inside WhatsApp or Facebook).<br>2. Tap the <b>3-dot menu</b> at the top right.<br>3. Tap <b>Install app</b> (or <b>Add to Home screen</b>, then <b>Install</b>).<br>4. Open the <b>ED</b> icon from your home screen.")};
+document.getElementById("instWin").onclick=function(){go("<b>Install on Windows</b>1. Open this link in <b>Edge</b> or <b>Chrome</b>.<br>2. Click the <b>install icon</b> at the right end of the address bar,<br>or Edge menu &gt; <b>Apps</b> &gt; <b>Install this site as an app</b>,<br>or Chrome menu &gt; <b>Cast, save and share</b> &gt; <b>Install page as app</b>.<br>3. Open <b>ELIOT-DISTRIBUTORS</b> from the Start menu.")};
+document.getElementById("instSkip").onclick=function(){try{sessionStorage.setItem("ed_inst_skip","1")}catch(e){}gate.style.display="none"};
+})();
+</script>
 </body></html>
