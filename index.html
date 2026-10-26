@@ -1198,7 +1198,7 @@ if("serviceWorker" in navigator){window.addEventListener("load",function(){navig
 var gate=document.getElementById("instGate");if(!gate)return;
 var standalone=matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: window-controls-overlay)").matches||navigator.standalone===true;
 var skipped=false;try{skipped=sessionStorage.getItem("ed_inst_skip")==="1"}catch(e){}
-if(standalone||skipped)return;
+if(standalone||skipped||/Electron/i.test(navigator.userAgent))return;
 var dp=null,help=document.getElementById("instHelp");
 window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e});
 window.addEventListener("appinstalled",function(){gate.style.display="none"});

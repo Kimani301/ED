@@ -1,5 +1,5 @@
 // Bump VERSION every time you update the app so installed copies refresh.
-const VERSION = 'eliot-v2';
+const VERSION = 'eliot-v3';
 const CORE = ['./', './index.html', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png',
   './icons/apple-touch-icon.png', './icons/favicon.png'];

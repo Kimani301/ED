@@ -1,0 +1,27 @@
+{
+  "name": "eliot-distributors",
+  "version": "1.0.0",
+  "description": "ELIOT-DISTRIBUTORS shop management",
+  "author": "key-money",
+  "main": "main.js",
+  "scripts": {
+    "dist": "electron-builder --win nsis --publish never"
+  },
+  "devDependencies": {
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.keymoney.eliotdistributors",
+    "productName": "ELIOT-DISTRIBUTORS",
+    "directories": { "output": "dist" },
+    "files": ["main.js", "index.html", "icons/**"],
+    "win": { "target": "nsis", "icon": "icons/icon-512.png" },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
